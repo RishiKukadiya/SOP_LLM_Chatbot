@@ -1,6 +1,10 @@
-import streamlit as st
-from src.helper import load_vectorstore, ask_question
+import sys
 import os
+# ✅ Add project root and src folder to Python path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from src.helper import load_vectorstore, ask_question
+import streamlit as st
 
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(page_title="💬 Company SOP Chatbot", page_icon="🤖", layout="centered")
