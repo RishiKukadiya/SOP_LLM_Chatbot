@@ -1,1 +1,18 @@
+# Ignore virtual environment
+venv/
+__pycache__/
+*.pyc
+
+# Ignore FAISS and embeddings
+faiss_index_sop/
+*.faiss
+*.pkl
+
+# Ignore secrets & local configs
 .env
+*.csv
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
