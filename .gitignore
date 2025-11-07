@@ -8,11 +8,7 @@ faiss_index_sop/
 *.faiss
 *.pkl
 
-# Ignore secrets & local configs
 .env
+# Ignore secrets & local configs
 *.csv
 *.log
-
-# OS-specific files
-.DS_Store
-Thumbs.db
