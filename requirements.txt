@@ -1,6 +1,10 @@
-python-dotenv
 streamlit
 langchain
-langchain_perplexity
+langchain-community
+langchain-core
 faiss-cpu
-python-docx
+openai
+tiktoken
+python-dotenv
+requests
+unstructured
