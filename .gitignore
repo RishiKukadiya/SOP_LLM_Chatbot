@@ -5,10 +5,12 @@ __pycache__/
 
 # Ignore FAISS and embeddings
 faiss_index_sop/
+faiss_vector_store/
 *.faiss
 *.pkl
 
-.env
+
 # Ignore secrets & local configs
 *.csv
+.env
 *.log

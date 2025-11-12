@@ -1,30 +1,18 @@
 import streamlit as st
 from src.db_helper import validate_user
 
-# ---------------- PAGE CONFIG ----------------
 st.set_page_config(page_title="Login - SOP Chatbot", page_icon="🔐", layout="centered")
 
-# ---------------- HIDE SIDEBAR & FOOTER ----------------
+# ---------------- STYLE CLEANUP ----------------
 st.markdown("""
     <style>
     [data-testid="stSidebar"], [data-testid="stSidebarNav"], footer, header {display: none;}
     </style>
 """, unsafe_allow_html=True)
 
-# ---------------- RESTORE LOGIN FROM QUERY PARAMS ----------------
-params = st.query_params
-if params.get("logged_in") == "true":
-    st.session_state.logged_in = True
-    st.session_state.user_email = params.get("email", "Unknown")
-
-# ---------------- SESSION INIT ----------------
-if "logged_in" not in st.session_state:
-    st.session_state.logged_in = False
-if "user_email" not in st.session_state:
-    st.session_state.user_email = None
 
 # ---------------- REDIRECT IF ALREADY LOGGED IN ----------------
-if st.session_state.logged_in:
+if st.session_state.get("logged_in"):
     st.switch_page("pages/app.py")
 
 # ---------------- LOGIN UI ----------------
@@ -41,13 +29,11 @@ if st.button("Login"):
     else:
         with st.spinner("🔍 Verifying your credentials..."):
             if validate_user(email, password):
+                # ✅ Store session & query params for persistence
                 st.session_state.logged_in = True
                 st.session_state.user_email = email
-
-                # ✅ Save login info to query params (persistent across pages)
-                st.query_params["email"] = email
                 st.query_params["logged_in"] = "true"
-
+                st.query_params["email"] = str(email)
                 st.success("✅ Login successful! Redirecting...")
                 st.switch_page("pages/app.py")
             else:
